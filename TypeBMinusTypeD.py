@@ -79,7 +79,7 @@ def generate_permutations_with(num_pinnacles, length):
 				pinnacle_sets.append(signed_p)
 	return pinnacle_sets
 
-
+ 
 length = int(input("What is the size of the permutation? "))
 pinnacle_sets = []
 for num_pinnacles in range(1, math.ceil((length) / 2)):
