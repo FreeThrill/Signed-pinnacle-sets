@@ -2,7 +2,7 @@ import math
 import collections
 from itertools import combinations
 
-
+ 
 # Returns True if there exists a signed permutations of the given
 # length with pinnacles as a pinnacle set.
 def can_exist(pinnacles, length, is_d):
