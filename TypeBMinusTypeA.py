@@ -4,13 +4,13 @@ from itertools import combinations
  
 
 # Returns True if there exists a permutation of the given
-# length with pinnacles as a pinnacle set with signs depending on
+# size with pinnacles as a pinnacle set with signs depending on
 # what type of permutation is being constructed.
-def can_exist(pinnacles, length, is_b):
+def can_exist(pinnacles, size, is_b):
 	pinnacles.sort(reverse=True)
 	# Try to build a signed permutation that realizes the given pinnacle
 	# set.
-	permutation = [0] * length
+	permutation = [0] * size
 	# Dict that will contain entries {pinnacle: index}, for each entry
 	# in pinnacles, where 'index' is the index of the pinnacle in the
 	# permutation being constructed (i.e. permutation[indexes[pinnacle]] == pinnacle).
@@ -19,9 +19,9 @@ def can_exist(pinnacles, length, is_b):
 	# permutation, with signs depending on what type of
 	# pinnacles sets it wants.
 	if is_b:
-		remaining_numbers = [-i for i in range(1, length + 1)]
+		remaining_numbers = [-i for i in range(1, size + 1)]
 	else:
-		remaining_numbers = list(reversed([i for i in range(1, length + 1)]))
+		remaining_numbers = list(reversed([i for i in range(1, size + 1)]))
 	first_pinnacle_index = 1
 	last_pinnacle_index = first_pinnacle_index + 2 * (len(pinnacles) - 1)
 	for x, i in zip(pinnacles, range(0, len(pinnacles))):
@@ -64,19 +64,19 @@ def value_at_index_or_max_pinnacle(permutation, index, pinnacles):
 	return permutation[index]
 
 	
-def generate_permutations_with(num_pinnacles, length):
+def generate_permutations_with(num_pinnacles, size):
 	pinnacle_sets = []
-	candidate_pinnacle_sets = combinations(list(range(1, length + 1)), num_pinnacles)
+	candidate_pinnacle_sets = combinations(list(range(1, size + 1)), num_pinnacles)
 	for p in candidate_pinnacle_sets:
 		p = list(p)
-		if can_exist(p, length, True) and not can_exist(p, length, False):
+		if can_exist(p, size, True) and not can_exist(p, size, False):
 			pinnacle_sets.append(p)
 	return pinnacle_sets
 
 
-length = int(input("What is the size of the permutation? "))
+size = int(input("What is the size of the permutation? "))
 pinnacle_sets = []
-for num_pinnacles in range(1, math.ceil(length / 2)):
-	pinnacle_sets.extend(generate_permutations_with(num_pinnacles, length))
+for num_pinnacles in range(1, math.ceil(size / 2)):
+	pinnacle_sets.extend(generate_permutations_with(num_pinnacles, size))
 pinnacle_sets = list(map(sorted, pinnacle_sets))
 print(pinnacle_sets, len(pinnacle_sets))
