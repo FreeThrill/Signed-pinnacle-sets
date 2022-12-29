@@ -1,7 +1,7 @@
 import math
 import collections
 from itertools import combinations
-
+ 
 
 # Returns True if there exists a permutation of the given
 # length with pinnacles as a pinnacle set with signs depending on
