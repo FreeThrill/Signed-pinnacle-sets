@@ -63,7 +63,7 @@ def value_at_index_or_max_pinnacle(permutation, index, pinnacles):
 	if index == -1 or index == len(permutation):
 		return max(pinnacles) + 1
 	return permutation[index]
-
+ 
 
 def sign_at(sign_bitmap, index):
 	return  (-1) ** (sign_bitmap >> index & 1)
